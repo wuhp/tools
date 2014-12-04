@@ -1,0 +1,18 @@
+#!/usr/bin/expect -f
+
+### Usage:
+###   ./copy_ssh_key.expect ip user passwd
+
+set ip [lindex $argv 0]
+set user [lindex $argv 1]
+set passwd [lindex $argv 2]
+
+set timeout -1
+
+spawn ssh-copy-id $user@$ip
+expect {
+  "*yes/no" { send "yes\r"; exp_continue }
+  "*password:" { send "$passwd\r" }
+}
+
+expect "expecting.\r"
