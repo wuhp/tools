@@ -3,6 +3,10 @@
 ### Usage:
 ###   ./copy_ssh_key.expect ip user passwd
 
+### Consider using below solution to remove the
+### host key checking, avoid typing 'yes'
+### ssh -o "StrictHostKeyChecking no" $USER@$HOST
+
 set ip [lindex $argv 0]
 set user [lindex $argv 1]
 set passwd [lindex $argv 2]

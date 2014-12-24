@@ -13,7 +13,7 @@ export REMOTE_PASSWD=hello123
 [ -f ~/.ssh/id_rsa ] || ssh-keygen -t rsa -f ~/.ssh/id_rsa -N "" > /dev/null
 
 which expect > /dev/null 2>&1
-[ $? -ne 0 ] && yum -y install expect
+[ $? -ne 0 ] && echo "Expect is not available!" && exit -1
 
 for ip in $*
 do
