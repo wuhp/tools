@@ -7,16 +7,20 @@
 ### host key checking, avoid typing 'yes'
 ### ssh -o "StrictHostKeyChecking no" $USER@$HOST
 
+### This script could be executed for more than once
+### copy_ssh_key.expect xxx xxx xxx  -> return 0
+### copy_ssh_key.expect xxx xxx xxx  -> return 0
+
+#!/usr/bin/expect -f
+
+set timeout -1
 set ip [lindex $argv 0]
 set user [lindex $argv 1]
 set passwd [lindex $argv 2]
 
-set timeout -1
-
-spawn ssh-copy-id $user@$ip
+spawn ssh-copy-id "-p10022 $user@$ip"
 expect {
-  "*yes/no" { send "yes\r"; exp_continue }
-  "*password:" { send "$passwd\r" }
+        "*yes/no" { send "yes\r"; exp_continue }
+        "*password:" { send "$passwd\r"; exp_continue }
+        eof
 }
-
-expect "expecting.\r"
