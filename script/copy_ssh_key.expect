@@ -11,8 +11,6 @@
 ### copy_ssh_key.expect xxx xxx xxx  -> return 0
 ### copy_ssh_key.expect xxx xxx xxx  -> return 0
 
-#!/usr/bin/expect -f
-
 set timeout -1
 set ip [lindex $argv 0]
 set user [lindex $argv 1]
