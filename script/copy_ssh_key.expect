@@ -18,7 +18,7 @@ set ip [lindex $argv 0]
 set user [lindex $argv 1]
 set passwd [lindex $argv 2]
 
-spawn ssh-copy-id "-p10022 $user@$ip"
+spawn ssh-copy-id "-p22 $user@$ip"
 expect {
         "*yes/no" { send "yes\r"; exp_continue }
         "*password:" { send "$passwd\r"; exp_continue }
